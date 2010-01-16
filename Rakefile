@@ -3,32 +3,34 @@ require 'rake/testtask'
 require 'rbconfig'
 include Config
 
-desc 'Install the memoize library (non-gem)'
-task :install do
-   sitelibdir = CONFIG['sitelibdir']
-   file = 'lib/memoize.rb'
-   FileUtils.cp(file, sitelibdir, :verbose => true)
+namespace :gem do
+  desc 'Build the memoize gem'
+  task :build do
+    spec = eval(IO.read('memoize.gemspec'))
+    Gem::Builder.new(spec).build
+  end
+
+  desc 'Install the memoize library'
+  task :install => [:build] do
+    file = Dir['*.gem'].first
+    sh 'gem install #{file}'
+  end
 end
 
-desc 'Install the memoize library as a gem'
-task :install_gem do
-   ruby 'memoize.gemspec'
-   file = Dir['*.gem'].first
-   sh 'gem install #{file}'
-end
-
-desc 'Run the fibonacci example & benchmarks'
-task :example_fib do
-   ruby '-Ilib examples/example_fibonacci.rb'
-end
+namespace :example do
+  desc 'Run the fibonacci example & benchmarks'
+  task :fib do
+    ruby '-Ilib examples/example_fibonacci.rb'
+  end
 
 desc 'Run the memoize example & benchmarks'
-task :example_memoize do
-   ruby '-Ilib examples/example_memoize.rb'
+  task :memoize do
+    ruby '-Ilib examples/example_memoize.rb'
+  end
 end
 
 Rake::TestTask.new do |t|
-   t.libs << 'test'
-   t.verbose = true
-   t.warning = true
+  t.libs << 'test'
+  t.verbose = true
+  t.warning = true
 end

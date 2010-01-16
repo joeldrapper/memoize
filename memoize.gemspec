@@ -1,28 +1,28 @@
 require 'rubygems'
 
-spec = Gem::Specification.new do |gem|
-   gem.name      = 'memoize'
-   gem.version   = '1.3.1'
-   gem.author    = 'Daniel J. Berger'
-   gem.license   = 'Artistic 2.0'
-   gem.email     = 'djberg96@gmail.com'
-   gem.homepage  = 'http://www.rubyforge.org/projects/shards'
-   gem.platform  = Gem::Platform::RUBY
-   gem.summary   = 'Speeds up methods at the cost of memory (or disk space)'
-   gem.test_file = 'test/test_memoize.rb'
-   gem.has_rdoc  = true
-   gem.files     = Dir['**/*'].reject{ |f| f.include?('CVS') }
+# Build the gem with the 'rake gem:build' command.
 
-   gem.rubyforge_project = 'shards'
-   gem.extra_rdoc_files  = ['MANIFEST', 'README', 'CHANGES']
+Gem::Specification.new do |spec|
+  spec.name      = 'memoize'
+  spec.version   = '1.3.2'
+  spec.author    = 'Daniel J. Berger'
+  spec.license   = 'Artistic 2.0'
+  spec.email     = 'djberg96@gmail.com'
+  spec.homepage  = 'http://www.rubyforge.org/projects/shards'
+  spec.platform  = Gem::Platform::RUBY
+  spec.summary   = 'Speeds up methods at the cost of memory (or disk space)'
+  spec.test_file = 'test/test_memoize.rb'
+  spec.has_rdoc  = true
+  spec.files     = Dir['**/*'].reject{ |f| f.include?('git') }
+
+  spec.rubyforge_project = 'shards'
+  spec.extra_rdoc_files  = ['MANIFEST', 'README', 'CHANGES']
    
-   gem.add_development_dependency('test-unit', '>= 2.0.2')
+  spec.add_development_dependency('test-unit', '>= 2.0.2')
 
-   gem.description = <<-EOF
-      The memoize library allows you to cache methods for faster lookup.
-      Cached results can either be stored in memory (the default) or to
-      a file.
-   EOF
+  spec.description = <<-EOF
+    The memoize library allows you to cache methods for faster lookup.
+    Cached results can either be stored in memory (the default) or to
+    a file.
+  EOF
 end
-
-Gem::Builder.new(spec).build
