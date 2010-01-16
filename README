@@ -1,0 +1,80 @@
+= Description
+   A method that speeds methods up at the cost of memory (or disk space).
+   
+= Prerequisites
+   Ruby 1.8.0 or later
+
+= Installation
+== Standard Installation
+   rake test (optional)
+   rake install
+
+== Gems Installation
+   rake test (optional)
+   rake gem install
+
+= Synopsis
+   require "memoize"
+   include Memoize
+
+   # Inefficient fibonacci method
+   def fib(n)
+      return n if n < 2
+      fib(n-1) + fib(n-2)
+   end
+
+   fib(100) # Slow
+
+   memoize(:fib)
+   fib(100) # Fast
+   
+   # Or store the cache to a file for later use
+   memoize(:fib, "fib.cache")
+   fib(100) # Fast
+
+= Constants
+Memoize::MEMOIZE_VERSION
+   Returns the version of this package as a String.
+
+= Methods
+Memoize#memoize(method, file=nil)
+   Takes a +method+ (symbol) and caches the results of +method+ in a hash
+   table. If you call +method+ again with the same arguments, memoize gives
+   you the value from the table instead of letting the method compute the
+   value again.
+   
+   If +file+ is provided, the results are cached to that file.  Note that
+   this uses Marshal internally.  Beware of changes in the Marshal format
+   should you happen to upgrade.
+
+   Returns the cache, which you can inspect or manipulate directly if you are
+   so inclined.
+
+= Acknowledgements
+   Code borrowed from Nobu Nakada (ruby-talk:155159).
+   Code borrowed from Ara Howard (ruby-talk:173428).
+   Code borrowed from Andrew Johnson (http://tinyurl.com/8ymx8)
+   Ideas taken from Brian Buckley and Sean O'Halpin.
+   Tiny URL provided for Andrew Johnson because I could not find the ruby-talk
+   reference.  The gateway may have been broken at the time.
+   
+== Known Issues
+   None that I'm aware of.  Please report any problems on the Shards tracker
+   or the forums at http://www.rubyforge.org/projects/shards.
+
+== License
+   Artistic 2.0
+   
+== Warranty
+   This package is provided "as is" and without any express or
+   implied warranties, including, without limitation, the implied
+   warranties of merchantability and fitness for a particular purpose.
+
+== Copyright
+   (C) 2005-2009 Daniel J. Berger
+   All Rights Reserved
+
+= Author
+   Daniel J. Berger
+   djberg96 at gmail dot com
+   IRC nick: imperator (freenode)
