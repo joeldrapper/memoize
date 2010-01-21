@@ -48,6 +48,12 @@ Memoize#memoize(method, file=nil)
   Ideas taken from Brian Buckley and Sean O'Halpin.
   Tiny URL provided for Andrew Johnson because I could not find the ruby-talk
   reference. The gateway may have been broken at the time.
+
+= Alternatives
+  * memoizable from James Edward Gray
+  * simple_memoize from Jack Canty
+
+  Running "gem search -r memoize" will list more alternatives.
    
 == Known Issues
   None that I'm aware of.  Please report any problems on the Shards tracker
