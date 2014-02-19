@@ -1,3 +1,7 @@
+= DEPRECATION WARNING
+  Please do not use this gem. It has long been surpassed by other, better
+  memoization gems like memoizable and memoist.
+
 = Description
   A method that speeds methods up at the cost of memory (or disk space).
    
@@ -50,14 +54,15 @@ Memoize#memoize(method, file=nil)
   reference. The gateway may have been broken at the time.
 
 = Alternatives
+  * memoist by Joshua Peek et al.
   * memoizable from James Edward Gray
   * simple_memoize from Jack Canty
 
   Running "gem search -r memoize" will list more alternatives.
    
 == Known Issues
-  None that I'm aware of.  Please report any problems on the Shards tracker
-  or the forums at http://www.rubyforge.org/projects/shards.
+  This library is deprecated. I will no longer support it, and will
+  eventually yank it from the gem index.
 
 == License
   Artistic 2.0
@@ -68,7 +73,7 @@ Memoize#memoize(method, file=nil)
   warranties of merchantability and fitness for a particular purpose.
 
 == Copyright
-  (C) 2005-2010 Daniel J. Berger
+  (C) 2005-2014 Daniel J. Berger
   All Rights Reserved
 
 = Author
